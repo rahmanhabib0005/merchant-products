@@ -4,8 +4,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Merchant\ProductController;
 use App\Http\Controllers\Merchant\StoreCategoryController;
 use App\Http\Controllers\Merchant\StoreController;
-use App\Models\StoreCategory;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,9 +18,6 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::middleware('guest:admin')->group(function () {
         Route::get('/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('login');
         Route::post('/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('login');
-
-        // Route::get('/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
-        // Route::post('/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'register'])->name('register');
     });
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth:admin')->name('dashboard');

@@ -30,17 +30,6 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/merchant/store-list';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // $this->middleware('guest')->except('logout');
-        // $this->middleware('auth')->only('logout');
-    }
-
     public function showLoginForm()
     {
         return view('merchant.auth.login');
