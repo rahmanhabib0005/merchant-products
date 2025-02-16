@@ -21,14 +21,13 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if($guard == 'admin')
-                {
+                if ($guard == 'admin') {
                     return redirect()->route('admin.dashboard');
-                }else if($guard == 'merchant'){   
-                    return redirect()->route('merchant.dashboard');
+                } else if ($guard == 'merchant') {
+                    return redirect()->route('merchant.store-list.index');
                 }
 
-                return redirect()->route('home');
+                return redirect()->route('merchant.store-list.index');
             }
         }
 

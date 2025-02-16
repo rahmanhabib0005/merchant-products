@@ -32,13 +32,21 @@
                          <span>Web Designer</span>
                      </li>
                      <li>
-                         <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
+                         <a class="dropdown-item d-flex align-items-center"
+                             href="
+                         @if (auth()->guard('admin')->check()) {{ route('admin.logout') }}
+                             @elseif(auth()->guard('merchant')->check())
+                             {{ route('merchant.logout') }} @endif"
                              onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                              <i class="bi bi-box-arrow-right"></i>
                              <span>Sign Out</span>
                          </a>
-                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                         <form id="logout-form"
+                             action="@if (auth()->guard('admin')->check()) {{ route('admin.logout') }}
+                             @elseif(auth()->guard('merchant')->check())
+                             {{ route('merchant.logout') }} @endif"
+                             method="POST" class="d-none">
                              @csrf
                          </form>
                      </li>
